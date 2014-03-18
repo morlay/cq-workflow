@@ -1,0 +1,15 @@
+{
+  "name": "cq-workflow",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {},
+  "devDependencies": {
+    "gulp": "*",
+    "yargs": "*",
+    "event-stream": "*",
+    "gulp-clean": "*",
+    "gulp-stylus": "*",
+    "gulp-rename": "*",
+    "q": "^1.0.1"
+  }
+}
