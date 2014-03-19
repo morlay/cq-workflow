@@ -5,33 +5,37 @@ var changed = require('gulp-changed');
 module.exports = function (gulp, config) {
 
   var project = config.curProj;
+  var DEST = [
+    '.sync',
+    project.name,
+    'jcr_root',
+    'apps',
+    project.name
+  ].join('/');
+
+
+  var SRC = [
+    'src',
+    project.name
+  ].join('/');
+
+  gulp.task('trans.mirror.watch', function () {
+    gulp.watch([
+      SRC + '/**/**/*.jsp',
+      SRC + '/**/**/.content.xml'
+    ], ['trans.mirror'])
+  });
 
 
   gulp.task('trans.mirror', function () {
 
 
-
-    var dest = [
-      '.sync',
-      project.name,
-      'jcr_root',
-      'apps',
-      project.name
-    ].join('/');
-
-
-    var src = [
-      'src',
-      project.name
-    ].join('/');
-
-
     gulp.src([
-        src + '/**/**/*.jsp',
-        src + '/**/**/.content.xml'
+        SRC + '/**/**/*.jsp',
+        SRC + '/**/**/.content.xml'
       ])
-      .pipe(changed(dest))
-      .pipe(gulp.dest(dest))
+      .pipe(changed(DEST))
+      .pipe(gulp.dest(DEST))
 
 
   });

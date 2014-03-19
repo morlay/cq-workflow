@@ -6,6 +6,7 @@ module.exports = function (gulp, config) {
   require('./trans/res')(gulp, config);
 
   gulp.task('trans', ['trans.stylus', 'trans.mirror', 'trans.res', 'trans.stylus']);
+  gulp.task('trans.watch', ['trans.stylus.watch', 'trans.mirror.watch', 'trans.res.watch', 'trans.stylus.watch']);
 
 };
 

@@ -10,39 +10,42 @@ var es = require('event-stream');
 module.exports = function (gulp, config) {
 
   var project = config.curProj;
+  var DEST = [
+    '.sync',
+    project.name,
+    'jcr_root',
+    'apps',
+    project.name,
+    'components'
+  ].join('/');
 
+
+  var SRC = [
+    'src',
+    project.name,
+    'components'
+  ].join('/');
+
+  gulp.task('trans.js.watch', function () {
+    gulp.watch([
+      SRC + '/**/script/*.js'
+    ], ['trans.js'])
+  });
 
   gulp.task('trans.js', function () {
-
-
-    var dest = [
-      '.sync',
-      project.name,
-      'jcr_root',
-      'apps',
-      project.name,
-      'components'
-    ].join('/');
-
-
-    var src = [
-      'src',
-      project.name,
-      'components'
-    ].join('/');
 
 
     var changedFiles = {};
 
     gulp.src([
-        src + '/**/script/*.js'
+        SRC + '/**/script/*.js'
       ])
-      .pipe(changed(dest))
+      .pipe(changed(DEST))
       .pipe(rename(function (path) {
         console.log(path);
         collectJsFiles(path.dirname + '/' + path.basename + path.extname, changedFiles)
       }))
-      .pipe(gulp.dest(dest))
+      .pipe(gulp.dest(DEST))
       .on('end', function () {
 
         console.log(changedFiles);
@@ -66,7 +69,7 @@ module.exports = function (gulp, config) {
             });
 
             es.readArray([txtFile, xmlFile])
-              .pipe(gulp.dest(dest));
+              .pipe(gulp.dest(DEST));
 
           }))
 

@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var clean = require('gulp-clean');
 
 module.exports = function (config) {
 
@@ -14,7 +15,11 @@ module.exports = function (config) {
 
   require('./dev/trans')(gulp, config);
 
-  gulp.task('default', ['trans']);
+  gulp.task('clean', function () {
+    gulp.src('.sync/' + config.curProj.name + '/**').pipe(clean());
+  });
+
+  gulp.task('default', ['trans', 'trans.watch']);
 
 };
 

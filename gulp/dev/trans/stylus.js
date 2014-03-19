@@ -7,31 +7,33 @@ var changed = require('gulp-changed');
 module.exports = function (gulp, config) {
 
   var project = config.curProj;
+  var DEST = [
+    '.sync',
+    project.name,
+    'jcr_root',
+    'apps',
+    project.name,
+    'components'
+  ].join('/');
+
+  var SRC = [
+    'src',
+    project.name,
+    'components'
+  ].join('/');
+
+  gulp.task('trans.stylus.watch', function () {
+    gulp.watch([
+      SRC + '/**/stylus/*.styl'
+    ], ['trans.stylus'])
+  });
 
   gulp.task('trans.stylus', function () {
-
-    var dest = [
-      '.sync',
-      project.name,
-      'jcr_root',
-      'apps',
-      project.name,
-      'components'
-    ].join('/');
-
-
-    var src = [
-      'src',
-      project.name,
-      'components'
-    ].join('/');
-
-    console.log(src, dest);
 
     var changedFiles = {};
 
     gulp.src([
-        src + '/**/stylus/_*.styl'
+        SRC + '/**/stylus/_*.styl'
       ])
       .pipe(stylus({
         use: ['nib'],
@@ -49,12 +51,12 @@ module.exports = function (gulp, config) {
         collectStyleFiles(path.dirname + '/' + path.basename + path.extname, changedFiles)
 
       }))
-      .pipe(changed(dest))
-      .pipe(gulp.dest(dest))
+      .pipe(changed(DEST))
+      .pipe(gulp.dest(DEST))
       .on('end', function () {
 
         es.readArray(Object.keys(changedFiles))
-          .pipe(es.map(function (key, callback) {
+          .pipe(es.map(function (key) {
 
             var fileInfo = changedFiles[key];
 
@@ -72,8 +74,7 @@ module.exports = function (gulp, config) {
             });
 
 
-            es.readArray([txtFile, xmlFile]).pipe(gulp.dest(dest));
-
+            es.readArray([txtFile, xmlFile]).pipe(gulp.dest(DEST));
 
           }))
 
