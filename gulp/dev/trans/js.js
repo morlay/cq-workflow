@@ -38,7 +38,8 @@ module.exports = function (gulp, config) {
     var changedFiles = {};
 
     gulp.src([
-        SRC + '/**/script/*.js'
+        SRC + '/**/script/*.js',
+        SRC + '/**/**/script/*.js'
       ])
       .pipe(changed(DEST))
       .pipe(rename(function (path) {
