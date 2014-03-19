@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var clean = require('gulp-clean');
+var livereload = require('gulp-livereload');
 
 module.exports = function (config) {
 
@@ -9,17 +10,35 @@ module.exports = function (config) {
     throw new Error('the project ' + (config.argv.p || config.argv.project) + ' is no config');
   }
 
+  var project = config.curProj;
+
 
   require('./cq/mgr')(gulp, config);
   require('./cq/vlt')(gulp, config);
 
   require('./dev/trans')(gulp, config);
 
+  require('./dev/git')(gulp, config);
+
   gulp.task('clean', function () {
-    gulp.src('.sync/' + config.curProj.name + '/**').pipe(clean());
+    gulp.src('.sync/' + project.name + '/**').pipe(clean());
   });
 
-  gulp.task('default', ['trans', 'trans.watch']);
+
+  gulp.task('default', ['trans', 'trans.watch'], function () {
+    var server = livereload();
+
+    gulp.watch([
+        '.sync',
+        project.name,
+        'jcr_root',
+        'apps',
+        project.name,
+        '**'
+      ].join('/')).on('change', function (file) {
+        server.changed(file.path);
+      });
+  });
 
 };
 
