@@ -1,7 +1,7 @@
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
 var argv = require('yargs').argv;
-
+var changed = require('gulp-changed');
 
 var vlt = require('../../util/util');
 
@@ -37,13 +37,13 @@ module.exports = function (gulp, config) {
       'components'
     ].join('/');
 
-    console.log(src, dest);
 
     var changedFiles = {};
 
     gulp.src([
         src + '/**/script/*.js'
       ])
+      .pipe(changed(dest))
       .pipe(rename(function (path) {
         console.log(path);
         collectJsFiles(path.dirname + '/' + path.basename + path.extname, changedFiles)

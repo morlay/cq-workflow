@@ -29,8 +29,11 @@ module.exports = {
       if (!project.length) {
         console.log('no configure about the project');
         return false;
+      } else {
+        project = project[0];
       }
     }
+
     return project;
   }
 };

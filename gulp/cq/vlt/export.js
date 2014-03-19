@@ -19,6 +19,8 @@ module.exports = function (gulp, config) {
       return;
     }
 
+    console.log(project);
+
     var workspace = [
       '.sync'
     ];

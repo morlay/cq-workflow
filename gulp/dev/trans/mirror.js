@@ -1,6 +1,6 @@
 var gutil = require('gulp-util');
 var argv = require('yargs').argv;
-
+var changed = require('gulp-changed');
 var vlt = require('../../util/util');
 
 module.exports = function (gulp, config) {
@@ -33,8 +33,9 @@ module.exports = function (gulp, config) {
 
     gulp.src([
         src + '/**/**/*.jsp',
-        src + '/**/**/**/.content.xml'
+        src + '/**/**/.content.xml'
       ])
+      .pipe(changed(dest))
       .pipe(gulp.dest(dest))
 
 

@@ -10,6 +10,7 @@
     "event-stream": "*",
     "gulp-clean": "*",
     "gulp-stylus": "*",
-    "gulp-rename": "*"
+    "gulp-rename": "*",
+    "gulp-changed": "*"
   }
 }

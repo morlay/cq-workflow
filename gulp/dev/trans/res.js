@@ -1,6 +1,6 @@
 var gutil = require('gulp-util');
 var vlt = require('../../util/util');
-
+var changed = require('gulp-changed');
 
 module.exports = function (gulp, config) {
 
@@ -35,7 +35,7 @@ module.exports = function (gulp, config) {
         src + '/**/res/**',
         src + '/**/**/res/**'
       ])
-
+      .pipe(changed(dest))
       .pipe(gulp.dest(dest));
 
 

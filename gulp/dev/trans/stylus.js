@@ -3,6 +3,7 @@ var stylus = require('gulp-stylus');
 var rename = require('gulp-rename');
 var vlt = require('../../util/util');
 var es = require('event-stream');
+var changed = require('gulp-changed');
 
 module.exports = function (gulp, config) {
 
@@ -57,6 +58,7 @@ module.exports = function (gulp, config) {
         collectStyleFiles(path.dirname + '/' + path.basename + path.extname, changedFiles)
 
       }))
+      .pipe(changed(dest))
       .pipe(gulp.dest(dest))
       .on('end', function () {
 
