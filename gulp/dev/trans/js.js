@@ -3,23 +3,17 @@ var rename = require('gulp-rename');
 var argv = require('yargs').argv;
 var changed = require('gulp-changed');
 
-var vlt = require('../../util/util');
 
 var es = require('event-stream');
 
 
 module.exports = function (gulp, config) {
 
-  var projects = config.projects;
+  var project = config.curProj;
 
 
   gulp.task('trans.js', function () {
 
-    var project = vlt.checkProject(argv, projects);
-
-    if (!project) {
-      return;
-    }
 
     var dest = [
       '.sync',

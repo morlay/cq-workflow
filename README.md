@@ -64,3 +64,10 @@ sync
 of course can all
 
 * `gulp trans`
+
+## CVS
+
+* `gulp trans.stylus`
+* `gulp trans.js`
+* `gulp trans.res`
+* `gulp trans.mirror`

@@ -1,23 +1,13 @@
-var vlt = require('../../util/util');
+var runVlt = require('./libs/runVlt');
 
 module.exports = function (gulp, config) {
 
   var argv = config.argv;
-  var projects = config.projects;
   var hosts = config.hosts;
+  var project = config.curProj;
 
 
   gulp.task('vlt.rcp', function () {
-
-    // set project
-
-    console.log(argv);
-
-    var project = vlt.checkProject(argv, projects);
-
-    if (!project) {
-      return;
-    }
 
     var hostInput = hosts[argv.i || argv.from];
     var hostOutput = hosts[argv.o || argv.to];
@@ -33,15 +23,14 @@ module.exports = function (gulp, config) {
       ].join('');
     };
 
-    vlt.runVlt([
+    runVlt.exec([
       'rcp',
       '-u', // update
       '-n', // new file
       '-r', // recursive
       convertPathByHost(hostInput),
       convertPathByHost(hostOutput)
-    ], [
-    ]);
+    ], []);
   });
 
 

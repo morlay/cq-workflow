@@ -3,7 +3,7 @@
 var child = require('child_process');
 
 module.exports = {
-  runVlt: function (args, pathArr) {
+  exec: function (args, pathArr) {
     console.log(args.join(' '));
     console.log(pathArr.join('/'));
     child.execFile(
@@ -16,25 +16,6 @@ module.exports = {
           console.log('exec error: ' + error);
         }
       });
-  },
-  checkProject: function (argv, projects) {
-    var project = projects[0];
-
-    if (argv.p || argv.project) {
-
-      project = projects.filter(function (item) {
-        return (argv.p || argv.project) === item.name
-      });
-
-      if (!project.length) {
-        console.log('no configure about the project');
-        return false;
-      } else {
-        project = project[0];
-      }
-    }
-
-    return project;
   }
 };
 

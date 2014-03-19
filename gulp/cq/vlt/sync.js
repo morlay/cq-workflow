@@ -1,23 +1,15 @@
-var vlt = require('../../util/util');
+var runVlt = require('./libs/runVlt');
+
 
 module.exports = function (gulp, config) {
 
   var argv = config.argv;
-  var projects = config.projects;
   var hosts = config.hosts;
+  var project = config.curProj;
 
 
   gulp.task('vlt.sync', function () {
 
-    // set project
-
-    console.log(argv);
-
-    var project = vlt.checkProject(argv, projects);
-
-    if (!project) {
-      return;
-    }
 
     var host = 'local';
 
@@ -38,7 +30,7 @@ module.exports = function (gulp, config) {
 
 
     if (argv.i || argv.install) {
-      vlt.runVlt([
+      runVlt.exec([
         '--credentials',
         [hostObj.user, hostObj.password].join(':'),
         'sync',
@@ -55,7 +47,7 @@ module.exports = function (gulp, config) {
     }
 
     if (argv.s || argv.status) {
-      vlt.runVlt([
+      runVlt.exec([
         '--credentials',
         [hostObj.user, hostObj.password].join(':'),
         'sync',
@@ -71,7 +63,7 @@ module.exports = function (gulp, config) {
     }
 
     if (argv.r || argv.run) {
-      vlt.runVlt([
+      runVlt.exec([
         '--credentials',
         [hostObj.user, hostObj.password].join(':'),
         'sync',
@@ -86,7 +78,7 @@ module.exports = function (gulp, config) {
     }
 
     if (argv.u || argv.unregister) {
-      vlt.runVlt([
+      runVlt.exec([
         '--credentials',
         [hostObj.user, hostObj.password].join(':'),
         'sync',

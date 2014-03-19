@@ -1,23 +1,15 @@
-var vlt = require('../../util/util');
+var runVlt = require('./libs/runVlt');
+
 
 module.exports = function (gulp, config) {
 
   var argv = config.argv;
-  var projects = config.projects;
+  var project = config.curProj;
   var hosts = config.hosts;
 
 
   gulp.task('vlt.import', function () {
 
-    // set project
-
-    console.log(argv);
-
-    var project = vlt.checkProject(argv, projects);
-
-    if (!project) {
-      return;
-    }
 
     var workspace = [
       '.sync'
@@ -36,7 +28,7 @@ module.exports = function (gulp, config) {
       return;
     }
 
-    vlt.runVlt([
+    runVlt.exec([
       '--credentials',
       [hostObj.user, hostObj.password].join(':'),
       'import',

@@ -1,23 +1,14 @@
 var gutil = require('gulp-util');
 var stylus = require('gulp-stylus');
 var rename = require('gulp-rename');
-var vlt = require('../../util/util');
 var es = require('event-stream');
 var changed = require('gulp-changed');
 
 module.exports = function (gulp, config) {
 
-  var projects = config.projects;
-  var argv = config.argv;
-
+  var project = config.curProj;
 
   gulp.task('trans.stylus', function () {
-
-    var project = vlt.checkProject(argv, projects);
-
-    if (!project) {
-      return;
-    }
 
     var dest = [
       '.sync',

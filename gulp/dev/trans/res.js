@@ -1,19 +1,11 @@
 var gutil = require('gulp-util');
-var vlt = require('../../util/util');
 var changed = require('gulp-changed');
 
 module.exports = function (gulp, config) {
 
-  var projects = config.projects;
-  var argv = config.argv;
+  var project = config.curProj;
 
   gulp.task('trans.res', function () {
-
-    var project = vlt.checkProject(argv, projects);
-
-    if (!project) {
-      return;
-    }
 
     var dest = [
       '.sync',
