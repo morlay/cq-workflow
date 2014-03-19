@@ -52,3 +52,15 @@ sync
 * `gulp vlt.sync -s` or `gulp vlt.sync --status`
 * `gulp vlt.sync -r` or `gulp vlt.sync --run`
 * `gulp vlt.sync -u` or `gulp vlt.sync --unregister`
+
+
+### DEV
+
+* `gulp trans.stylus`
+* `gulp trans.js`
+* `gulp trans.res`
+* `gulp trans.mirror`
+
+of course can all
+
+* `gulp trans`

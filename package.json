@@ -6,10 +6,10 @@
   "devDependencies": {
     "gulp": "*",
     "yargs": "*",
+    "gulp-util": "*",
     "event-stream": "*",
     "gulp-clean": "*",
     "gulp-stylus": "*",
-    "gulp-rename": "*",
-    "q": "^1.0.1"
+    "gulp-rename": "*"
   }
 }

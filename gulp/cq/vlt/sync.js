@@ -1,4 +1,4 @@
-var vlt = require('./util');
+var vlt = require('../../util/util');
 
 module.exports = function (gulp, config) {
 
