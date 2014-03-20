@@ -74,7 +74,8 @@ module.exports = function (gulp, config) {
             });
 
 
-            es.readArray([txtFile, xmlFile]).pipe(gulp.dest(DEST));
+            es.readArray([txtFile, xmlFile])
+              .pipe(gulp.dest(DEST));
 
           }))
 

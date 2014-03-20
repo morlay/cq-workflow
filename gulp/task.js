@@ -35,7 +35,9 @@ module.exports = function (config) {
         'apps',
         project.name,
         '**'
-      ].join('/')).on('change', function (file) {
+      ].join('/'))
+      .on('change', function (file) {
+        server.changed(file.path);
       });
   });
 
