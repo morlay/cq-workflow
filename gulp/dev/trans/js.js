@@ -41,11 +41,11 @@ module.exports = function (gulp, config) {
         SRC + '/**/script/*.js',
         SRC + '/**/**/script/*.js'
       ])
-      .pipe(changed(DEST))
       .pipe(rename(function (path) {
         console.log(path);
         collectJsFiles(path.dirname + '/' + path.basename + path.extname, changedFiles)
       }))
+      .pipe(changed(DEST))
       .pipe(gulp.dest(DEST))
       .on('end', function () {
 
@@ -66,7 +66,9 @@ module.exports = function (gulp, config) {
               contents: new Buffer('<?xml version="1.0" encoding="UTF-8"?>\n' +
                 '<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"\n' +
                 'jcr:primaryType="cq:ClientLibraryFolder"\n' +
-                'categories="[' + project.name + '.components]"/>')
+                'categories="[' + project.name + '.components]"\n' +
+                'dependencies="[cq.jquery]"' +
+                '/>')
             });
 
             es.readArray([txtFile, xmlFile])
