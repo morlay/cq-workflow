@@ -51,7 +51,6 @@ module.exports = function (gulp, config) {
         collectStyleFiles(path.dirname + '/' + path.basename + path.extname, changedFiles)
 
       }))
-      .pipe(changed(DEST))
       .pipe(gulp.dest(DEST))
       .on('end', function () {
 
@@ -64,6 +63,8 @@ module.exports = function (gulp, config) {
               path: fileInfo.txtFile,
               contents: new Buffer(fileInfo.fileList.reverse().join('\n'))
             });
+
+            console.log(txtFile,fileInfo.txtFile);
 
             var xmlFile = new gutil.File({
               path: fileInfo.xmlFile,

@@ -42,14 +42,11 @@ module.exports = function (gulp, config) {
         SRC + '/**/**/script/*.js'
       ])
       .pipe(rename(function (path) {
-        console.log(path);
         collectJsFiles(path.dirname + '/' + path.basename + path.extname, changedFiles)
       }))
       .pipe(changed(DEST))
       .pipe(gulp.dest(DEST))
       .on('end', function () {
-
-        console.log(changedFiles);
 
         es.readArray(Object.keys(changedFiles))
           .pipe(es.map(function (key, callback) {
