@@ -6,12 +6,15 @@
 * require `node` environment.
 * prepare files into `cq-env`
 
+
+
     /cq-env
         cq5-author-p4502.jar
         cq5-publish-p4503.jar
         license.properties
         filevault.tgz
         jre-7u51-macosx-x64.tar.gz
+
 
 
 * `npm install -g git://github.com/morlay/cq-cli.git` for CLIs.
