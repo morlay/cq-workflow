@@ -1,17 +1,16 @@
 {
   "name": "cq-workflow",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "scripts": {},
   "devDependencies": {
-    "gulp": "*",
-    "yargs": "*",
-    "gulp-util": "*",
-    "event-stream": "*",
-    "gulp-clean": "*",
-    "gulp-stylus": "*",
-    "gulp-rename": "*",
-    "gulp-changed": "*",
-    "gulp-livereload": "*"
+    "grunt": "^0.4.4",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "gulp-changed": "^0.3.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-stylus": "^0.1.0",
+    "time-grunt": "^0.3.1",
+    "vinyl-fs": "^0.1.2"
   }
 }

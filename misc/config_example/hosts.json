@@ -1,9 +1,0 @@
-{
-  "local": {
-    "protocol": "http:",
-    "host": "127.0.0.1",
-    "port": "4502",
-    "user": "admin",
-    "password": "admin"
-  }
-}
