@@ -51,6 +51,7 @@ module.exports = function (grunt) {
 				path.basename = path.basename.replace('_', '');
 
 				collectStyleFiles('/' + path.dirname + '/' + path.basename + path.extname, changedFiles)
+
 			}))
 			.pipe(vfs.dest(DEST))
 			.on('close', function () {
