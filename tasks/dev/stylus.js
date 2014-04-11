@@ -43,7 +43,7 @@ module.exports = function (grunt) {
 					path.join(process.cwd(), projectBase.src, '/utils/stylus/*.styl'),
 					'nib'
 				],
-				set: ['compress']
+				set: [/*'compress'*/]
 			}))
 			.pipe(rename(function (path) {
 
